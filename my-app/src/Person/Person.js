@@ -5,6 +5,7 @@ const person = (param) => {
         <div>
             <p>I'm {param.name}! and I am {param.age} years old!</p>
             <p>{param.children}</p>
+            <input type="text" onChange={param.changed} value={param.name}/>
         </div>
 
     );
