@@ -1,23 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
+import appCss from './App.module.css';
+import personCss from './Person/Person.module.css';
 import './Person/Person.css';
 import Person from './Person/Person';
-import styled from 'styled-components';
 
 
-const StyledButton = styled.button`
-  background-color: ${props => props.alt ? 'red' : 'green'};
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
-  
-  &:hover {
-    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
-    color: black;
-  }
-`;
 
 
 class App extends Component {
@@ -74,18 +62,7 @@ class App extends Component {
  
   render () {
 
-    // const style={
-    //   backgroundColor: 'green',
-    //   font: 'white',
-    //   border: '1px solid blue',
-    //   padding: '8px',
-    //   cursor: 'pointer',
-    //   ':hover':{
-    //     backgroundColor:'lightgreen',
-    //     color: 'black'
-    //   }
-    // };
-
+    const btnClass=[appCss.Button];
     let persons = null;
 
     if (this.state.showPersons){
@@ -106,12 +83,7 @@ class App extends Component {
         
       );
         
-      // style.backgroundColor='red';
-
-      // style[':hover']={
-      //   backgroundColor:'salmon',
-      //   color: 'black'
-      // }
+      btnClass.push(appCss.Red);
     }
 
 
@@ -120,11 +92,11 @@ class App extends Component {
     let classes = [];
 
     if(this.state.persons.length <= 2){
-      classes.push('red');
+      classes.push(appCss.red);
     }
 
     if (this.state.persons.length <= 1){
-      classes.push('bold');
+      classes.push(appCss.bold);
     }
 
     return (
@@ -132,9 +104,9 @@ class App extends Component {
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p className={classes.join(' ')}>This is really working!</p>
-        <StyledButton  alt={this.state.showPersons} onClick={this.togglePersonsHandler}>
+        <button className={btnClass.join(' ')} onClick={this.togglePersonsHandler}>
           Toggle Persons
-        </StyledButton>
+        </button>
           {persons}    
       </div>
 
