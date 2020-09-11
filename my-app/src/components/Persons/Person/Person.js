@@ -1,5 +1,4 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { Component } from 'react';
 import personCSS from './Person.module.css';
 
 const person = param => {

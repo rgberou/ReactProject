@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import appCss from './App.module.css';
-import personCss from './Person/Person.module.css';
-import './Person/Person.css';
-import Person from './Person/Person';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
+// import personCss from '../components/Persons/Person/Person.module.css';
+// import '../components/Persons/Person/Person.css';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit'
+
 
 
 
@@ -69,16 +70,11 @@ class App extends Component {
     if (this.state.showPersons){
       persons =(
         <div>
-          {this.state.persons.map((person,index) => {
-            return <ErrorBoundary><Person 
-              click={()=>this.deletePersonHandler(index)}
-              name={person.name} 
-              age={person.age}
-              key={person.id}
-              changed={(event)=>this.nameChangedHandler(event,person.id)}
-              /></ErrorBoundary>;
-          })}
-   
+          <Persons 
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangedHandler} 
+          />
         </div> 
 
         
@@ -88,27 +84,17 @@ class App extends Component {
     }
 
 
-    // let classes =['red','bold'].join(' ');
 
-    let classes = [];
-
-    if(this.state.persons.length <= 2){
-      classes.push(appCss.red);
-    }
-
-    if (this.state.persons.length <= 1){
-      classes.push(appCss.bold);
-    }
 
     return (
 
       <div className="App">
-        <h1>Hi, I'm a React App</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
-        <button className={btnClass.join(' ')} onClick={this.togglePersonsHandler}>
-          Toggle Persons
-        </button>
-          {persons}    
+        <Cockpit 
+          clicked={this.togglePersonsHandler}
+          showPersons={this.state.showPersons}
+          persons={this.state.persons}
+          />
+        {persons}    
       </div>
 
     );
